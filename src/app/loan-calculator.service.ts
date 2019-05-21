@@ -3,6 +3,7 @@ import { LoanDetails } from './model/loanDetails';
 import { Observable, of } from 'rxjs';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError} from "rxjs/internal/operators";
+import { RepaymentSchedule } from './model/repaymentSchedule';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,9 +21,9 @@ export class LoanCalculatorService {
 
   constructor(private http: HttpClient) { }
 
-  calculate(loanDetails: LoanDetails): Observable<LoanDetails> {
-    return this.http.post<LoanDetails>(this.backendUrl, loanDetails, httpOptions).pipe(
-      catchError(this.handleError<LoanDetails>('addHero'))
+  calculate(loanDetails: LoanDetails): Observable<RepaymentSchedule[]> {
+    return this.http.post<RepaymentSchedule[]>(this.backendUrl, loanDetails, httpOptions).pipe(
+      catchError(this.handleError<RepaymentSchedule[]>('addHero'))
     );
   }
   private handleError<T>(operation = 'operation', result?: T) {
