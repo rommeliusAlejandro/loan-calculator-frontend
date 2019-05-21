@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { LoanDetails } from './model/loanDetails';
+import { LoanDetails } from '../model/loanDetails';
 import { Observable, of } from 'rxjs';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError} from "rxjs/internal/operators";
-import { RepaymentSchedule } from './model/repaymentSchedule';
+import { RepaymentSchedule } from '../model/repaymentSchedule';
+import { environment } from 'src/environments/environment.prod';
+import { AbstractHttpService } from './abstract-http.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,14 +17,16 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class LoanCalculatorService {
+export class LoanCalculatorService extends AbstractHttpService {
+  
+  constructor(private http: HttpClient) { super(); }
 
-  private backendUrl = 'http://localhost:9090/calculateLoan';
-
-  constructor(private http: HttpClient) { }
+  public path(): String {
+    return "/calculateLoan";
+  }
 
   calculate(loanDetails: LoanDetails): Observable<RepaymentSchedule[]> {
-    return this.http.post<RepaymentSchedule[]>(this.backendUrl, loanDetails, httpOptions).pipe(
+    return this.http.post<RepaymentSchedule[]>(this.getUrl(), loanDetails, httpOptions).pipe(
       catchError(this.handleError<RepaymentSchedule[]>('addHero'))
     );
   }

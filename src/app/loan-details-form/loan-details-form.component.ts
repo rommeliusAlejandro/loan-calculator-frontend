@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LoanDetails } from '../model/loanDetails';
-import { LoanCalculatorService } from '../loan-calculator.service';
+import { LoanCalculatorService } from '../services/loan-calculator.service';
 import { RepaymentSchedule } from '../model/repaymentSchedule';
 
 @Component({
