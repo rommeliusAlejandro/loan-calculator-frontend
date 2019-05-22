@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   backend: {
-    host: 'http://172.16.4.115',
+    host: 'http://192.168.1.9',
     port: 9090
   }
 };

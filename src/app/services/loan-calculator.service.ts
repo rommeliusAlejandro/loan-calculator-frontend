@@ -25,9 +25,9 @@ export class LoanCalculatorService extends AbstractHttpService {
     return "/calculateLoan";
   }
 
-  calculate(loanDetails: LoanDetails): Observable<RepaymentSchedule[]> {
-    return this.http.post<RepaymentSchedule[]>(this.getUrl(), loanDetails, httpOptions).pipe(
-      catchError(this.handleError<RepaymentSchedule[]>('addHero'))
+  calculate(loanDetails: LoanDetails): Observable<any> {
+    return this.http.post<any>(this.getUrl(), loanDetails, httpOptions).pipe(
+      catchError(this.handleError<any>('calculating loan'))
     );
   }
   private handleError<T>(operation = 'operation', result?: T) {
