@@ -1,0 +1,7 @@
+@startuml
+scale 2
+left to right direction
+
+actor borrower
+
+
