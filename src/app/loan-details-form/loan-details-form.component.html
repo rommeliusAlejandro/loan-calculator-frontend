@@ -20,10 +20,44 @@
       <div class="form-group">
           <select id="loanPeriod" class="browser-default custom-select" [(ngModel)]="loanDetails.loanLife">              
               <option value="12">12</option>
-              <option value="36">36</option>          
+              <option value="36">36</option>
+              <option value="120">120</option>
+              <option value="300">300</option>
+              <option value="360">360</option>          
             </select>
       </div>
   </div>  
+</div>
+<div class="row">
+  <div class="col-4">
+      <div class="form-group">
+        <label for="interestRate" >Annual Interest Rate</label>
+      </div>      
+  </div>
+  <div class="col-4">
+      <div class="form-group">
+          <select id="interestRate" class="browser-default custom-select" [(ngModel)]="loanDetails.interestRate">              
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="4.5">4.5</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="6.5">6.5</option>
+              <option value="12">12</option>
+              <option value="36">15</option>          
+            </select>
+      </div>
+  </div>  
+</div>
+<div class="row">
+  <div class="col-4">
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="decliningInterest" [(ngModel)]="loanDetails.decliningInterest">
+      <label class="form-check-label" for="decliningInterest">Declining Interest</label>
+    </div>
+  </div>
 </div>
 <div class="row">
     <div class="offset-6 col-4">
