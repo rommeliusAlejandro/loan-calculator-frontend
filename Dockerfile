@@ -1,13 +1,7 @@
-FROM node:12.2.0
+FROM tomcat:9.0.22-jdk13-openjdk-oracle
 
-WORKDIR /app
+WORKDIR /usr/local/tomcat/
 
-ENV PATH /app/node_modules/.bin:$PATH
-
-COPY package.json /app/package.json
-RUN npm install 
-RUN npm install -g @angular/cli
-
-COPY . /app
-
-CMD ng serve --host 0.0.0.0
+COPY /dist/ webapps
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
