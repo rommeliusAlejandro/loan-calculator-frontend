@@ -1,0 +1,40 @@
+---
+- hosts: webservers
+  user: root
+
+  tasks:
+    - name: Install Java 8
+      apt:
+        name: openjdk-8-jre
+        state: present
+    - name: Create Tomcat Folder
+      file:
+        path: /home/rommel/tomcat
+        state: directory
+        mode: 0755
+        owner: rommel
+        group: rommel
+    - name: Download Tomcat
+      get_url: 
+        url: https://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.22/bin/apache-tomcat-9.0.22.tar.gz 
+        dest: /home/rommel/tomcat
+    - name: Extract Tomcat
+      unarchive: 
+        src: /home/rommel/tomcat/apache-tomcat-9.0.22.tar.gz 
+        dest: /home/rommel/tomcat
+        remote_src: yes
+    - name: Create Artifact Folder
+      file:
+        path: /home/rommel/apache-tomcat-9.0.22/webapps/LoanCalculator
+        state: directory
+        mode: 0755
+        owner: rommel
+        group: rommel
+    - name: Copy Artifact
+      copy:
+        src: /home/rommel/.jenkins/workspace/Loan Calculator Pipeline/dist/loan-calculator-fe/
+        dest: /home/rommel/tomcat/apache-tomcat-9.0.22/webapps/LoanCalculator
+    - name: Start Apache Tomcat
+      shell: /home/rommel/tomcat/apache-tomcat-9.0.22/bin/startup.sh
+    
+
