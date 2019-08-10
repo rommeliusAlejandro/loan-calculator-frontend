@@ -34,6 +34,13 @@
       copy:
         src: /home/rommel/.jenkins/workspace/Loan Calculator Pipeline/dist/loan-calculator-fe/
         dest: /home/rommel/tomcat/apache-tomcat-9.0.22/webapps/LoanCalculator
+    - name: Configure Tomcat        
+      copy:
+        src: /home/rommel/.jenkins/workspace/Loan Calculator Pipeline/server.xml
+        dest: /home/rommel/tomcat/apache-tomcat-9.0.22/conf/server.xml
+        owner: root
+        group: root
+        mode: u=rw
     - name: Start Apache Tomcat
       shell: /home/rommel/tomcat/apache-tomcat-9.0.22/bin/startup.sh
     
