@@ -8,12 +8,14 @@ import { LoanDetailsFormComponent } from './loan-details-form/loan-details-form.
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    LoanDetailsFormComponent
+    LoanDetailsFormComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

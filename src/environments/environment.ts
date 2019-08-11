@@ -7,7 +7,9 @@ export const environment = {
   backend: {
     host: 'http://localhost',
     port: 9090
-  }
+  },
+  buildNumber: '{BUILD_NUMBER}',
+  version: '{VERSION}'
 };
 
 /*
