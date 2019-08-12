@@ -1,5 +1,11 @@
 pipeline {
     agent none
+    
+    parameters {
+        string(defaultValue: 'localhost', description: 'Backend IP', name: 'backendIp')
+        string(defaultValue: '9090', description: 'Backend Port', name: 'backendPort')
+    }
+    
     stages {
         stage('Clone frontend code') {
             agent {label 'master'}
@@ -11,6 +17,7 @@ pipeline {
             agent{ docker 'trion/ng-cli:8.0.6'}
             steps {
                 sh "npm install"
+                sh "npm run updateVariables ${env.BUILD_NUMBER} ${params.backendIp} ${params.backendPort}"
                 sh "ng build --prod --base-href=/LoanCalculator/"
             }
         }
